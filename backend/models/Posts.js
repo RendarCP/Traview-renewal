@@ -10,6 +10,7 @@ const postSchema = new Schema({
   like: Array,
   createDate: { type: Date, default: Date.now},
   upDate: { type: Date, default: Date.now},
-  comments: { type: Schema.Types.ObjectId, ref: 'Comment'},
+  //comments: { type: Schema.Types.ObjectId, ref: 'Comment'},
+  comments: [String],
   type: { tpye: String, default: "POST"},
 })
