@@ -2,15 +2,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-  userId: String,
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   title: String,
   description: String,
   content: String,
   tag: Array,
   like: Array,
-  createDate: { type: Date, default: Date.now},
-  upDate: { type: Date, default: Date.now},
+  contryId: Number,
+  createDate: { 
+    type: Date, 
+    default: Date.now
+  },
+  upDate: { 
+    type: Date, 
+    default: Date.now
+  },
   //comments: { type: Schema.Types.ObjectId, ref: 'Comment'},
-  comments: [String],
+  comments: {Object},
   type: { tpye: String, default: "POST"},
 })
+
+module.exports = mongoose.model('posts',postSchema)

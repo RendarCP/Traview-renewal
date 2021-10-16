@@ -11,8 +11,22 @@ const commentSchema = mongoose.Schema({
     ref: 'Post'
   },
   content: String,
-  createDate: { type: Date, default: Date.now},
-  upDate: { type: Date, default: Date.now},
-  comment_parents: { type: Schema.Types.ObjectId, ref: 'Comment'},
-  comment_index: { type: Number, default: 0 } // 댓글 뎁스 체크 
+  createDate: { 
+    type: Date, 
+    default: Date.now
+  },
+  upDate: { 
+    type: Date, 
+    default: Date.now
+  },
+  comment_parents: { 
+    type: Schema.Types.ObjectId, 
+    ref: 'Comment'
+  },
+  comment_index: { 
+    type: Number, 
+    default: 0 
+  } // 댓글 뎁스 체크 
 })
+
+module.exports = mongoose.model('comment',commentSchema)

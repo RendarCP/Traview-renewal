@@ -7,3 +7,5 @@ const schedulesSchema = new Schema({
   content: String, // 스케쥴 정보
   schedules: Array, // 스케쥴들
 })
+
+module.exports = mongoose.model('schedules',schedulesSchema)

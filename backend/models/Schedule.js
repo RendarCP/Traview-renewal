@@ -10,3 +10,5 @@ const scheduleSchema = new Schema({
   endDate: Date, // 종료 날짜
   content: String, // 내용
 })
+
+module.exports = mongoose.model('schedule',scheduleSchema)
