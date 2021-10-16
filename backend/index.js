@@ -4,13 +4,12 @@ require('dotenv').config();
 // Packages 관리 
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 // const cookieParser = require("cookie-parser");
-const port = 8080
+const port = process.env.port || 8080
 
 // DB연결
 const db_uri = process.env.MONGO_URI
@@ -23,9 +22,12 @@ mongoose.connect(db_uri)
     .then(() => console.log('Successfully connected to ' + db_uri))
     .catch(e => console.error(e));
 
+// cors미들 웨어 추가 
 app.use(cors())
 // -> body-parser express 빌트인 버전
 app.use(express.json())
+
+app.use('/api',require('./routes/users'))
 
 app.get('/',(req, res) => {
   res.send('Hello World')

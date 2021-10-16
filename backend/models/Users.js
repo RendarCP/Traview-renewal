@@ -8,7 +8,7 @@ const userSchema = new Schema({
   nickName: String, // 닉네임
   email: {
     type: String,
-    unique: 1,
+    unique: true,
   },
   token: String, // 토큰 값
   tokenExp: Number, // 토큰 기간
@@ -22,8 +22,13 @@ const userSchema = new Schema({
     default: Date.now
   }, // 유저 업데이트 일
   image: String, // 사진 
-  role: { type: String, default: 'USER'}, // 유저 권한 관리
-  birthDay: Date(),
+  role: { 
+    type: String, 
+    default: 'USER'
+  }, // 유저 권한 관리
+  birthDay: Date,
 })
 
-module.exports = mongoose.model('users',userSchema)
+const User = mongoose.model('users',userSchema)
+
+module.exports = { User }
