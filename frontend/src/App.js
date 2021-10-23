@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { BrowserRouter as Router,Switch,Route } from 'react-router-dom'
 import './App.css';
 
@@ -11,13 +10,15 @@ import MyPlan from '../src/pages/MyPlan'
 import Questions from './pages/Questions'
 import Reviews from './pages/Reviews'
 import EditPlan from '../src/pages/EditPlan'
+import SignUp from './pages/Users/SignUp';
+import Login from './pages/Users/Login'
 
 
 
 
 function App() {
   return (
-    <div>
+    <div style={{ width: '100%'}}>
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
@@ -28,7 +29,9 @@ function App() {
           <Route exact path="/info" component={Information}/>
           <Route exact path="/question" component={Questions}/>
           <Route exact path="/review" component={Reviews}/>
-        </Switch>
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+         </Switch>
       </Router>
     </div>
   );

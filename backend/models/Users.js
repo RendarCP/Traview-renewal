@@ -13,11 +13,11 @@ const userSchema = new Schema({
   token: String, // 토큰 값
   tokenExp: Number, // 토큰 기간
   gender: String, // 성별
-  createUser:{ 
+  createDate:{ 
     type: Date, 
     default: Date.now
   }, // 유저 생성일
-  updateUser: { 
+  upDate: { 
     type: Date, 
     default: Date.now
   }, // 유저 업데이트 일

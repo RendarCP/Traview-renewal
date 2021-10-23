@@ -17,17 +17,33 @@ router.post('/register', (req, res) => {
 })
 
 // 로그인 
-router.get('/login', (req, res) => {
+router.post('/login', (req, res) => {
   
-  const user = new User(req.body)
-  
-  user.find((err, user) => {
+  User.findOne({$and:[{userId: req.body.userId}, {passwd: req.body.passwd}], }, (err, user) => {
     if(err) return res.json({ success: false, err})
-   
+
     return res.status(200).json({
-      success: true,
-      user 
+      loginSuccess: true,
+      user
     })
+
+    // if(!user){
+    //   return res.json({
+    //     loginSuccess: false,
+    //     message: "Auth Fail"
+    //   })
+    // }
+
+    // user.comparePassword(req.body.password), (err, isMatch) => {
+    //   if(!isMatch) return res.json({ loginSuccess: false, message: "Wrong password" });
+    //   if(err) return res.status(400).send(err);
+      
+    //   return res.status(200).json({
+    //     loginSuccess: true,
+    //     user 
+    //   })
+    // }
+   
   })
 })
 
