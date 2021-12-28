@@ -6,6 +6,8 @@ const { User } = require("../models/Users")
 router.post('/register', (req, res) => {
   
   const user = new User(req.body)
+
+  console.log('user', user)
   
   user.save((err,user) => {
     if(err) return res.json({ success: false, err})
@@ -22,9 +24,18 @@ router.post('/login', (req, res) => {
   User.findOne({$and:[{userId: req.body.userId}, {passwd: req.body.passwd}], }, (err, user) => {
     if(err) return res.json({ success: false, err})
 
+    const data = {
+      role: user.role,
+      userId: user.userId,
+      nickName: user.nickName,
+      gender: user.gender,
+      name: user.name,
+      email:user.email
+    }
+
     return res.status(200).json({
       loginSuccess: true,
-      user
+      data
     })
 
     // if(!user){

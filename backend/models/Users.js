@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt')
+const saltRounds = 10;
 
 const userSchema = new Schema({
   userId: String, // 아이디
@@ -27,6 +29,26 @@ const userSchema = new Schema({
     default: 'USER'
   }, // 유저 권한 관리
   birthDay: Date,
+})
+
+
+userSchema.pre('save', function(next) {
+  const user = this;
+  console.log('backend' , this);
+  if(user.isModified('passwd')){
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+      if(err) return next(err);
+
+      bcrypt.hash(user.passwd, salt, (err, hash) => {
+        if(err) return next(err);
+        user.passwd = hash
+        next()
+      })
+    })
+  }
+  else{
+    next()
+  }
 })
 
 const User = mongoose.model('users',userSchema)

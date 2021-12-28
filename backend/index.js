@@ -27,7 +27,7 @@ app.use(cors())
 // -> body-parser express 빌트인 버전
 app.use(express.json())
 
-app.use('/api',require('./routes/users'))
+app.use('/api',require('./routes/users')) // 회원로그인 라우터
 
 app.get('/',(req, res) => {
   res.send('Hello World')

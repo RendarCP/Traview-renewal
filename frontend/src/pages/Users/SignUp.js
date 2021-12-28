@@ -13,6 +13,7 @@ const Container = styled.div`
 
 const Box = styled.div`
   width: 500px;
+  text-align: center;
 `
 
 const Spacer = styled.div`
@@ -40,7 +41,8 @@ const SignUp = ({ history }) => {
     console.log(inputs),
     <Container>
       <Box>
-        <div style={{ textAlign: 'center' }}>회원가입 페이지</div>
+        <strong style={{ textAlign: 'center', fontSize: 20 }}>회원가입 페이지</strong>
+        <Spacer />
         <TextField 
           fullWidth 
           id="outlined-basic" 
