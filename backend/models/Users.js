@@ -51,6 +51,20 @@ userSchema.pre('save', function(next) {
   }
 })
 
+userSchema.methods.comparePassword = function (plainPassword, cb) {
+  bcrypt.compare(plainPassword, this.passwd, function (err, isMatch) {
+      if (err) return cb(err);
+      cb(null, isMatch)
+  })
+}
+// userSchema.methods.comparePassword = function (plainPassword) {
+//   //plainPassword를 암호화해서 현재 비밀번호화 비교
+//   return bcrypt
+//     .compare(plainPassword, this.password)
+//     .then((isMatch) => isMatch)
+//     .catch((err) => err);
+// };
+
 const User = mongoose.model('users',userSchema)
 
 module.exports = { User }
