@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import TextField from '@mui/material/TextField';
+import { TextField, Button } from '@mui/material';
+import { userSignUp } from '../../lib/api/api';
+import axios from 'axios'
 
 
 const Container = styled.div`
@@ -37,6 +39,35 @@ const SignUp = ({ history }) => {
       [name] : value
     })
   }
+
+  const onClickSignUp = () => {
+    userSignUp({ userId : inputs.userId, passwd:inputs.passwd, name: inputs.name})
+    .then(res => {
+      console.log('res', res)
+    })
+    .catch(err => {
+      console.log('err', err)
+    })
+    // .then(res => {
+    //   console.log('res',res)
+    // })
+    // .catch(err => {
+    //   console.log('err', err)
+    // })
+    // axios.post('http://localhost:8080/api/register',{
+    //   userId : inputs.userId, 
+    //   passwd:inputs.passwd, 
+    //   name: inputs.name
+    // })
+    // .then(res => {
+    //   console.log('res',res)
+    // })
+    // .catch(err => {
+    //   console.log('err', err)
+    // })
+  }
+
+
   return(
     console.log(inputs),
     <Container>
@@ -97,6 +128,15 @@ const SignUp = ({ history }) => {
         {/* 이미지부분 */}
         {/* 성별 */}
         {/* 생년월일 */}
+        <Spacer />
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={onClickSignUp}
+          sx={{ borderColor: 'orange', color: 'orange', height: 50}}
+        >
+          회원가입
+        </Button>
       </Box>
     </Container>
   )

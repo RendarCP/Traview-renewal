@@ -6,6 +6,8 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  // userId: String,
+  usename: String,
   title: String,
   description: String,
   content: String,
@@ -21,8 +23,8 @@ const postSchema = new Schema({
     default: Date.now
   },
   //comments: { type: Schema.Types.ObjectId, ref: 'Comment'},
-  comments: {Object},
-  type: { tpye: String, default: "POST"},
+  comments: Array,
+  // type: { tpye: String, default: "POST"},
 })
 
 module.exports = mongoose.model('posts',postSchema)

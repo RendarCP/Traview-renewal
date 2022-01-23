@@ -28,6 +28,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api',require('./routes/users')) // 회원로그인 라우터
+app.use('/api', require('./routes/posts')) // post 라우터
 
 app.get('/',(req, res) => {
   res.send('Hello World')

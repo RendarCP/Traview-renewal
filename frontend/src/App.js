@@ -13,13 +13,16 @@ import EditPlan from '../src/pages/EditPlan'
 import SignUp from './pages/Users/SignUp';
 import Login from './pages/Users/Login'
 
+import MainRoute from './routes/MainRoute';
+
 
 
 
 function App() {
   return (
     <div style={{ width: '100%'}}>
-      <Router>
+      <MainRoute />
+      {/* <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/guide" component={Guide}/>
@@ -32,7 +35,7 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
          </Switch>
-      </Router>
+      </Router> */}
     </div>
   );
 }
