@@ -31,10 +31,9 @@ const userSchema = new Schema({
   birthDay: Date,
 })
 
-
+// 암호화 처리 
 userSchema.pre('save', function(next) {
   const user = this;
-  console.log('backend' , this);
   if(user.isModified('passwd')){
     bcrypt.genSalt(saltRounds, (err, salt) => {
       if(err) return next(err);
@@ -51,6 +50,7 @@ userSchema.pre('save', function(next) {
   }
 })
 
+// 비밀번호 비교 
 userSchema.methods.comparePassword = function (plainPassword, cb) {
   bcrypt.compare(plainPassword, this.passwd, function (err, isMatch) {
       if (err) return cb(err);

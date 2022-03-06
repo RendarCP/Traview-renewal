@@ -7,7 +7,7 @@ const postSchema = new Schema({
     ref: 'User'
   },
   // userId: String,
-  usename: String,
+  nickname: String,
   title: String,
   description: String,
   content: String,
