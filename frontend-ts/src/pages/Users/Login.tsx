@@ -21,6 +21,7 @@ const Box = styled.div`
   width: 100%;
   padding: 50px;
   background-color: white;
+  border-radius: 10px;
 `;
 
 const Login = () => {
@@ -69,18 +70,33 @@ const Login = () => {
           variant="outlined"
           onClick={onClickLogin}
           sx={{
-            borderColor: 'orange',
-            color: 'orange',
+            borderColor: '#32a852',
+            color: '#32a852',
             height: 50,
             '&:hover': {
-              borderColor: 'orange',
+              borderColor: '#32a852',
+            },
+          }}
+        >
+          로그인
+        </Button>
+        <Spacer top={10} />
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={onClickLogin}
+          sx={{
+            borderColor: '#32a852',
+            color: '#32a852',
+            height: 50,
+            '&:hover': {
+              borderColor: '#32a852',
             },
           }}
         >
           회원가입
         </Button>
         <Spacer top={10} />
-        <div>회원가입으로 ~~~</div>
       </Box>
     </Container>
   );
