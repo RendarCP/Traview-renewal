@@ -11,8 +11,8 @@ const Header = () => {
   return (
     <div
       style={{
-        border: '1px solid red',
         display: 'flex',
+        borderBottom: '1px solid red',
         justifyContent: 'space-between',
         width: '100%',
         height: 80,

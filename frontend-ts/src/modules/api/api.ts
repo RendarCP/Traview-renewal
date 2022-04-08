@@ -15,3 +15,20 @@ export const memberSignUp = async ({ userId, userPw, userNm, nickname, birthday,
     throw new Error(error);
   }
 };
+
+
+export const memberLogin = async ({ userId, userPw }: any ) => {
+  try {
+    const response = await axios.post(`http://localhost:8080/traview/user/signUp`,{
+      userId,userPw
+    });
+
+    if (response.data) {
+      return response;
+    }
+
+    throw new Error("fail");
+  } catch (error:any) {
+    throw new Error(error);
+  }
+};

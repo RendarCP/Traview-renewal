@@ -7,6 +7,7 @@ import { useForm, Controller } from 'react-hook-form';
 import backgroundImage from '../../static/images/back1.jpeg';
 import { memberSignUp } from '../../modules/api/api';
 import { isExternalModuleNameRelative } from 'typescript';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const emailRegex =
   /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -81,6 +83,12 @@ const SignUp = () => {
     })
       .then((res) => {
         console.log('res', res);
+        if (res.data.errorCode === 1) {
+          console.log('성공~!');
+          navigate('/');
+        } else {
+          console.log('실패~!');
+        }
       })
       .catch((err) => {
         console.log('err', err);
@@ -136,141 +144,133 @@ const SignUp = () => {
   };
 
   return (
-    console.log('teststests t======', isValidUserId, isValidPassword, isCheckPassword, isNameCheck),
-    console.log('isValidUserId', isIdValid),
-    console.log('isValidPassword', isPasswordValid),
-    console.log('isCheckPassword', isPasswordCheck),
-    console.log('isNameCheck', isUserNameValid),
-    console.log(watch()),
-    (
-      <Container>
-        <Box>
-          <Typography variant="h3" sx={{ fontSize: 25, fontWeight: 'bold' }}>
-            Traview
-          </Typography>
-          <Spacer />
-          <TextField
-            fullWidth
-            {...register('firstName', {
-              required: true,
-              maxLength: 20,
-              pattern: /^[A-Za-z]+$/i,
-            })}
-            error={isIdValid}
-            helperText={isIdValid ? '아이디는 필수 값 입니다.' : ''}
-            id="userId"
-            label="아이디(필수)"
-            variant="outlined"
-            name="userId"
-            value={inputs.userId}
-            onBlur={(e) => onCheck(e)}
-            onChange={onInputChange}
-          />
-          {errors?.firstName?.type === 'required' && <p>This field is required</p>}
-          {errors?.firstName?.type === 'maxLength' && <p>First name cannot exceed 20 characters</p>}
-          {errors?.firstName?.type === 'pattern' && <p>Alphabetical characters only</p>}
-          <Spacer />
-          <TextField
-            fullWidth
-            error={isPasswordValid}
-            helperText={isPasswordValid ? '비밀번호는 필수 값 입니다.' : ''}
-            id="passwd"
-            label="비밀번호"
-            variant="outlined"
-            name="passwd"
-            type="password"
-            value={inputs.passwd}
-            onChange={onInputChange}
-            onBlur={(e) => onCheck(e)}
-          />
-          <Spacer />
-          <TextField
-            fullWidth
-            error={isPasswordCheck}
-            helperText={isPasswordCheck && isCheckPassword && checkText}
-            id="passwdCheck"
-            label="비밀번호 확인"
-            variant="outlined"
-            name="passwdCheck"
-            type="password"
-            value={inputs.passwdCheck}
-            onChange={onChagnePasswd}
-            onBlur={(e) => onCheck(e)}
-          />
-          <Spacer />
-          <TextField
-            fullWidth
-            id="name"
-            label="이름(필수)"
-            variant="outlined"
-            name="name"
-            value={inputs.name}
-            onChange={onInputChange}
-            onBlur={(e) => onCheck(e)}
-            error={isUserNameValid}
-            helperText={isUserNameValid ? '비밀번호는 필수 값 입니다.' : ''}
-          />
-          <Spacer />
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="닉네임"
-            variant="outlined"
-            name="nickName"
-            value={inputs.nickName}
-            onChange={onInputChange}
-          />
-          {/* 성별 */}
-          <Spacer />
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="성별"
-            variant="outlined"
-            name="gender"
-            value={inputs.gender}
-            onChange={onInputChange}
-          />
-          {/* 생년월일 */}
-          <Spacer />
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="이메일"
-            variant="outlined"
-            name="email"
-            value={inputs.email}
-            onChange={onInputChange}
-          />
-          <Spacer />
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="휴대폰"
-            variant="outlined"
-            name="email"
-            value={inputs.phone}
-            onChange={onInputChange}
-          />
-          <Spacer />
-          <Button
-            fullWidth
-            variant="outlined"
-            onClick={onClickSignUp}
-            sx={{
+    <Container>
+      <Box>
+        <Typography variant="h3" sx={{ fontSize: 25, fontWeight: 'bold' }}>
+          Traview
+        </Typography>
+        <Spacer />
+        <TextField
+          fullWidth
+          {...register('firstName', {
+            required: true,
+            maxLength: 20,
+            pattern: /^[A-Za-z]+$/i,
+          })}
+          error={isIdValid}
+          helperText={isIdValid ? '아이디는 필수 값 입니다.' : ''}
+          id="userId"
+          label="아이디(필수)"
+          variant="outlined"
+          name="userId"
+          value={inputs.userId}
+          onBlur={(e) => onCheck(e)}
+          onChange={onInputChange}
+        />
+        {errors?.firstName?.type === 'required' && <p>This field is required</p>}
+        {errors?.firstName?.type === 'maxLength' && <p>First name cannot exceed 20 characters</p>}
+        {errors?.firstName?.type === 'pattern' && <p>Alphabetical characters only</p>}
+        <Spacer />
+        <TextField
+          fullWidth
+          error={isPasswordValid}
+          helperText={isPasswordValid ? '비밀번호는 필수 값 입니다.' : ''}
+          id="passwd"
+          label="비밀번호"
+          variant="outlined"
+          name="passwd"
+          type="password"
+          value={inputs.passwd}
+          onChange={onInputChange}
+          onBlur={(e) => onCheck(e)}
+        />
+        <Spacer />
+        <TextField
+          fullWidth
+          error={isPasswordCheck}
+          helperText={isPasswordCheck && isCheckPassword && checkText}
+          id="passwdCheck"
+          label="비밀번호 확인"
+          variant="outlined"
+          name="passwdCheck"
+          type="password"
+          value={inputs.passwdCheck}
+          onChange={onChagnePasswd}
+          onBlur={(e) => onCheck(e)}
+        />
+        <Spacer />
+        <TextField
+          fullWidth
+          id="name"
+          label="이름(필수)"
+          variant="outlined"
+          name="name"
+          value={inputs.name}
+          onChange={onInputChange}
+          onBlur={(e) => onCheck(e)}
+          error={isUserNameValid}
+          helperText={isUserNameValid ? '비밀번호는 필수 값 입니다.' : ''}
+        />
+        <Spacer />
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="닉네임"
+          variant="outlined"
+          name="nickName"
+          value={inputs.nickName}
+          onChange={onInputChange}
+        />
+        {/* 성별 */}
+        <Spacer />
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="성별"
+          variant="outlined"
+          name="gender"
+          value={inputs.gender}
+          onChange={onInputChange}
+        />
+        {/* 생년월일 */}
+        <Spacer />
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="이메일"
+          variant="outlined"
+          name="email"
+          value={inputs.email}
+          onChange={onInputChange}
+        />
+        <Spacer />
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="휴대폰"
+          variant="outlined"
+          name="email"
+          value={inputs.phone}
+          onChange={onInputChange}
+        />
+        <Spacer />
+        <Button
+          fullWidth
+          variant="outlined"
+          onClick={onClickSignUp}
+          sx={{
+            borderColor: '#32a852',
+            color: '#32a852',
+            height: 50,
+            '&:hover': {
               borderColor: '#32a852',
-              color: '#32a852',
-              height: 50,
-              '&:hover': {
-                borderColor: '#32a852',
-              },
-            }}
-          >
-            회원가입
-          </Button>
-        </Box>
-      </Container>
-    )
+            },
+          }}
+        >
+          회원가입
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

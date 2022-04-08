@@ -5,6 +5,7 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from '@emotion/styled';
+import SwiperContainer from '../components/common/SwiperContainer';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -19,12 +20,30 @@ const Test = styled(SwiperSlide)`
 `;
 
 function Home() {
+  const lists = [
+    {
+      title: 'test1',
+      content: 'test1',
+    },
+    {
+      title: 'test2',
+      content: 'test2',
+    },
+    {
+      title: 'test3',
+      content: 'test3',
+    },
+    {
+      title: 'test4',
+      content: 'test4',
+    },
+  ];
   return (
     <MainPageLayout>
       <div>
         <Typography>tests</Typography>
       </div>
-      <div style={{ height: '100%' }}>
+      {/* <div style={{ height: '100%' }}>
         <Swiper
           style={{ height: 300 }}
           slidesPerView={2}
@@ -49,7 +68,8 @@ function Home() {
           <SwiperSlide>Slide 8</SwiperSlide>
           <SwiperSlide>Slide 9</SwiperSlide>
         </Swiper>
-      </div>
+      </div> */}
+      <SwiperContainer items={lists} />
     </MainPageLayout>
   );
 }

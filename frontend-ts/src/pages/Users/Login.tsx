@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import backgroundImage from '../../static/images/back2.jpeg';
 import { Typography, TextField, Button } from '@mui/material';
 import Spacer from '../../components/common/Spacer';
+import { useNavigate } from 'react-router-dom';
+import { memberLogin } from '../../modules/api/api';
 
 const Container = styled.div`
   display: flex;
@@ -25,13 +27,32 @@ const Box = styled.div`
 `;
 
 const Login = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     userId: '',
     passwd: '',
   });
 
+  const onInputChange = (e: any) => {
+    const { value, name, id } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
   const onClickLogin = () => {
     console.log('Login');
+    memberLogin({
+      userId: inputs.userId,
+      userPw: inputs.passwd,
+    })
+      .then((res) => {
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
   };
 
   return (
@@ -47,12 +68,12 @@ const Login = () => {
         <Spacer top={10} />
         <TextField
           fullWidth
-          id="userid"
+          id="userId"
           label="아이디"
           variant="outlined"
-          name="userid"
-          type="userid"
+          name="userId"
           value={inputs.userId}
+          onChange={onInputChange}
         />
         <Spacer top={10} />
         <TextField
@@ -63,6 +84,7 @@ const Login = () => {
           name="passwd"
           type="password"
           value={inputs.passwd}
+          onChange={onInputChange}
         />
         <Spacer top={10} />
         <Button
@@ -84,7 +106,7 @@ const Login = () => {
         <Button
           fullWidth
           variant="outlined"
-          onClick={onClickLogin}
+          onClick={() => navigate('/signup')}
           sx={{
             borderColor: '#32a852',
             color: '#32a852',
