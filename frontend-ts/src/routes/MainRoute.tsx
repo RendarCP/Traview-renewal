@@ -12,6 +12,9 @@ import Reviews from '../pages/Reviews';
 import EditPlan from '../pages/EditPlan';
 import SignUp from '../pages/Users/SignUp';
 import Login from '../pages/Users/Login';
+import Posts from '../pages/Posts/Posts';
+import Post from '../pages/Posts/Post';
+import EditPost from '../pages/Posts/EditPost';
 
 const MainRoute = () => {
   return (
@@ -28,6 +31,9 @@ const MainRoute = () => {
         <Route path="/review" element={<Reviews />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/post/:id" element={<Post />} />
+        <Route path="/edit" element={<EditPost />} />
       </Routes>
     </>
   );

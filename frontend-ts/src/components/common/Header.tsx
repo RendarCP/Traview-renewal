@@ -5,14 +5,12 @@ import Spacer from './Spacer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  let location = useLocation();
   let navigate = useNavigate();
   console.log('history', navigate);
   return (
     <div
       style={{
         display: 'flex',
-        borderBottom: '1px solid red',
         justifyContent: 'space-between',
         width: '100%',
         height: 80,

@@ -28,6 +28,7 @@ const Box = styled.div`
   border-radius: 20px;
   padding: 20px;
   background-color: white;
+  box-shadow: 10px 10px #000000;
 `;
 
 const Spacer = styled.div`

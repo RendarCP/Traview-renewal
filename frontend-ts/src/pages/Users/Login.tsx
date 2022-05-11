@@ -24,6 +24,7 @@ const Box = styled.div`
   padding: 50px;
   background-color: white;
   border-radius: 10px;
+  box-shadow: 10px 10px #000000;
 `;
 
 const Login = () => {
