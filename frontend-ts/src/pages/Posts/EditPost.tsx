@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { TextField, Typography, Button } from '@mui/material';
 import styled from 'styled-components';
 import Spacer from '../../components/common/Spacer';
 import { useNavigate } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
+import FileUpload from '../../components/common/FileUpload';
 
 const Container = styled.div`
   display: flex;
@@ -25,6 +27,10 @@ const EditPost = () => {
     description: '',
     contents: '',
   });
+  const onDrop = useCallback((acceptedFiles: any) => {
+    // Do something with the files
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const onInputChange = (e: any) => {
     const { value, name, id } = e.target;
@@ -33,6 +39,7 @@ const EditPost = () => {
       [name]: value,
     });
   };
+
   return (
     <Container>
       <Typography>게시판 작성 뷰</Typography>
@@ -96,6 +103,9 @@ const EditPost = () => {
           >
             작성하기
           </Button>
+        </div>
+        <div style={{ marginTop: 20 }}>
+          <FileUpload />
         </div>
       </Box>
     </Container>
